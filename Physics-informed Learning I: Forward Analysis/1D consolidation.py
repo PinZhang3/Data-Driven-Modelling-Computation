@@ -1,10 +1,10 @@
 # ----------------------------------------------------------------------
-# Project Name: PiNet - Prior Information based NEural neTwork
-# Description : A physics informed learning based framework for constitutive modelling and BVPs
+# Project Name: Data-Driven Modelling & Computation
+# Description : This code is for 1D consolidation forward analysis
 # Author      : Pin ZHANG, National University of Singapore
 # Contact     : pinzhang@nus.edu.sg
-# Created On  : 4 Dec 2024
-# Repository  : https://github.com/PinZhang3/PiNet
+# Created On  : 26 Jun 2025
+# Repository  : https://github.com/PinZhang3/Data-Driven-Modelling-and-Computation
 # ----------------------------------------------------------------------
 # Notes:
 # This library is under active development. Contributions are welcome!
