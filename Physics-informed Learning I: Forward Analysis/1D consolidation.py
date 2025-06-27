@@ -1,6 +1,6 @@
 # ----------------------------------------------------------------------
 # Project Name: Data-Driven Modelling & Computation
-# Description : This code is for 1D consolidation forward analysis
+# Description : This code is for solving 1D consolidation equation
 # Author      : Pin ZHANG, National University of Singapore
 # Contact     : pinzhang@nus.edu.sg
 # Created On  : 26 Jun 2025
@@ -71,7 +71,7 @@ class PiNet:
                     tf.reduce_sum(tf.square(self.ub_x_pred)) + \
                     tf.reduce_sum(tf.square(self.f_pred))
         
-        # Optimizer for Solution
+        # Optimizer
         self.optimizer_LBFGS = tf.contrib.opt.ScipyOptimizerInterface(self.loss,
                              var_list = self.weights + self.biases,
                              method = 'L-BFGS-B',
@@ -140,19 +140,14 @@ class PiNet:
                    self.tt_tf: self.tt, self.xt_tf: self.xt,
                    self.tf_tf: self.tf, self.xf_tf: self.xf}
 
-        start_time = time.time()
         self.loss_history=[]
         for it in range(N_iter):
             
             self.sess.run(self.optimizer_Adam, tf_dict)
-            
-            # Print
+
             if it % 100 == 0:
-                elapsed = time.time() - start_time
                 loss_value = self.sess.run(self.loss, tf_dict)
-                print('It: %d, Loss: %.3e, Time: %.2f' % 
-                      (it, loss_value, elapsed))
-                start_time = time.time()
+                print('It: %d, Loss: %.3e' % (it, loss_value))
                 
         self.optimizer_LBFGS.minimize(self.sess,
                                     feed_dict = tf_dict,
