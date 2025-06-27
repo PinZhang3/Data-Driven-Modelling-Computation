@@ -3,7 +3,7 @@ New book coming soon (keep updating data, codes, etc)...
 If you are using our code in your research or studies, or if our work has inspired your own, we kindly ask that you cite the references listed below. Your citation is a great encouragement for us to continue developing and sharing open-source tools.  
 
 **Chapter ANN Basis** includes:  
-- A soil compressibility index (Cc) database  
+- A soil compressibility index (Cc) database
 - An ANN code for modelling of Cc
 
 The relevant paper related to this chapter refers to:  
