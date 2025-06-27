@@ -13,8 +13,8 @@ The relevant paper related to this chapter refers to:
 - A physics informed neural network for solving 1D Terzaghi consolidation
 
 The relevant paper related to this chapter refers to:
-- **Zhang P**, Yin ZY, Sheil B, 2024. A physics-informed data-driven approach for consolidation analysis. **Géotechnique**, 74(7), 620-631
 - **Zhang P**, Sheil B, Girolami, M, Yaji, K, Yin ZY, 2025. A novel consolidation analysis framework: universal function approximators regularized by physical principles. **Canadian Geotechnical Journal**, 62, 1–17
+- **Zhang P**, Yin ZY, Sheil B, 2024. A physics-informed data-driven approach for consolidation analysis. **Géotechnique**, 74(7), 620-631
 ---
 **Chapter Physics-informed Learning II: Inverse Analysis** includes  
 - A physics informed neural network for inverse analysis of 1D Terzaghi consolidation
