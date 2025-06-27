@@ -145,64 +145,65 @@ class NN:
 ################################ Main Function ################################
 ###############################################################################
 
-random.seed(2025)
-data = pd.read_csv('Cc.csv').values
-lb = np.min(data, axis=0)
-ub = np.max(data, axis=0)
+if __name__ == "__main__":
+    random.seed(2025)
+    data = pd.read_csv('Cc.csv').values
+    lb = np.min(data, axis=0)
+    ub = np.max(data, axis=0)
 
-N_input = 3
-N_out = 1
-N_cut_off = int(0.8*len(data))
-output = data[:, :N_out]
-input = data[:, N_out:]
-input_train = input[:N_cut_off, :]
-output_train = output[:N_cut_off, :]
-input_test = input[N_cut_off:, :]
-output_test = output[N_cut_off:, :]
+    N_input = 3
+    N_out = 1
+    N_cut_off = int(0.8*len(data))
+    output = data[:, :N_out]
+    input = data[:, N_out:]
+    input_train = input[:N_cut_off, :]
+    output_train = output[:N_cut_off, :]
+    input_test = input[N_cut_off:, :]
+    output_test = output[N_cut_off:, :]
 
-layer = [N_input, 32, N_out]
-N_epoch = 1000  # Adam training epoch
-N_grad = 0   # show distribution of gradients per N_grad
-batch = 128
-model = NN(layer, N_grad, N_input, N_out, lb, ub)
-model.train(N_epoch, input_train, output_train, batch)
-Cc_pred_train = model.predict(input_train)
-Cc_pred_test = model.predict(input_test)
-np.savetxt('Cc_pred.csv', Cc_pred_test, fmt='%0.10f', delimiter=',')
+    layer = [N_input, 32, N_out]
+    N_epoch = 1000  # Adam training epoch
+    N_grad = 0   # show distribution of gradients per N_grad
+    batch = 128
+    model = NN(layer, N_grad, N_input, N_out, lb, ub)
+    model.train(N_epoch, input_train, output_train, batch)
+    Cc_pred_train = model.predict(input_train)
+    Cc_pred_test = model.predict(input_test)
+    np.savetxt('Cc_pred.csv', Cc_pred_test, fmt='%0.10f', delimiter=',')
 
-rc = {"font.family": "serif", "mathtext.fontset": "stix", "font.size": 16}
-plt.rcParams.update(rc)
-plt.rcParams["font.serif"] = ["Times New Roman"]
+    rc = {"font.family": "serif", "mathtext.fontset": "stix", "font.size": 16}
+    plt.rcParams.update(rc)
+    plt.rcParams["font.serif"] = ["Times New Roman"]
 
-fig_1 = plt.figure(1, figsize=(10, 5))
-ax1 = fig_1.add_subplot(1, 2, 1)
-R2_training = r2_score(output_train, Cc_pred_train)
-mae_training = mean_absolute_error(output_train, Cc_pred_train)
-ax1.scatter(output_train, Cc_pred_train, alpha = 0.5, s=20,
-            marker='o', edgecolors='k', facecolors='none', label='Training')
-ax1.set_xlim([lb[0], ub[0]])
-ax1.set_ylim([lb[0], ub[0]])
-ax1.set_xlabel('Exact Cc')
-ax1.set_ylabel('Predict Cc')
-ax1.tick_params(direction='in')
+    fig_1 = plt.figure(1, figsize=(10, 5))
+    ax1 = fig_1.add_subplot(1, 2, 1)
+    R2_training = r2_score(output_train, Cc_pred_train)
+    mae_training = mean_absolute_error(output_train, Cc_pred_train)
+    ax1.scatter(output_train, Cc_pred_train, alpha = 0.5, s=20,
+                marker='o', edgecolors='k', facecolors='none', label='Training')
+    ax1.set_xlim([lb[0], ub[0]])
+    ax1.set_ylim([lb[0], ub[0]])
+    ax1.set_xlabel('Exact Cc')
+    ax1.set_ylabel('Predict Cc')
+    ax1.tick_params(direction='in')
 
-ax2 = fig_1.add_subplot(1, 2, 2)
-R2_testing = r2_score(output_test, Cc_pred_test)
-mae_testing = mean_absolute_error(output_test, Cc_pred_test)
-ax2.scatter(output_test, Cc_pred_test, alpha = 0.5, s=20,
-            marker='o', edgecolors='k', facecolors='none', label='Testing')
-ax2.set_xlim([lb[0], ub[0]])
-ax2.set_ylim([lb[0], ub[0]])
-ax2.set_xlabel('Exact Cc')
-ax2.set_ylabel('Predict Cc')
-ax2.tick_params(axis='both', direction='in')
+    ax2 = fig_1.add_subplot(1, 2, 2)
+    R2_testing = r2_score(output_test, Cc_pred_test)
+    mae_testing = mean_absolute_error(output_test, Cc_pred_test)
+    ax2.scatter(output_test, Cc_pred_test, alpha = 0.5, s=20,
+                marker='o', edgecolors='k', facecolors='none', label='Testing')
+    ax2.set_xlim([lb[0], ub[0]])
+    ax2.set_ylim([lb[0], ub[0]])
+    ax2.set_xlabel('Exact Cc')
+    ax2.set_ylabel('Predict Cc')
+    ax2.tick_params(axis='both', direction='in')
 
-loss = model.loss_log
-fig_2 = plt.figure(2, figsize=(6, 5))
-ax1 = fig_2.add_subplot(1, 1, 1)
-ax1.plot(loss)
-ax1.set_yscale('log')
-ax1.set_xlabel('Epoch')
-ax1.set_ylabel('Loss')
-ax1.tick_params(axis='both', direction='in')
-plt.show()
+    loss = model.loss_log
+    fig_2 = plt.figure(2, figsize=(6, 5))
+    ax1 = fig_2.add_subplot(1, 1, 1)
+    ax1.plot(loss)
+    ax1.set_yscale('log')
+    ax1.set_xlabel('Epoch')
+    ax1.set_ylabel('Loss')
+    ax1.tick_params(axis='both', direction='in')
+    plt.show()
