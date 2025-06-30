@@ -10,7 +10,8 @@ The relevant papers related to this chapter refer to:
 - **Zhang P**, Yin ZY, Jin YF, Chan THT, 2020. A novel hybrid surrogate intelligent model for creep index prediction based on particle swarm optimization and random forest. **Engineering Geology**. 265, 105328 
 ---
 **Chapter Physics-informed Learning I: Forward Analysis** includes  
-- A physics informed neural network for solving 1D Terzaghi consolidation
+- A physics informed neural network code for solving 1D Terzaghi consolidation
+- A physics informed neural network code for solving 2D radial consolidation
 
 The relevant papers related to this chapter refer to:
 - **Zhang P**, Sheil B, Girolami, M, Yaji, K, Yin ZY, 2025. A novel consolidation analysis framework: universal function approximators regularized by physical principles. **Canadian Geotechnical Journal**, 62, 1–17
